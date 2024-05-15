@@ -1,5 +1,5 @@
 json.id product.id
-json.name contact.name
-json.price contact.price
-json.image_url contact.image_url
-json.description contact.description
+json.name product.name
+json.price product.price
+json.image_url product.image_url
+json.description product.description
