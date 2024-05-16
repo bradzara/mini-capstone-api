@@ -21,9 +21,20 @@ class ProductsController < ApplicationController
     render template: "products/show"
   end
 
-  # def update
-  #   @product = Product.update(
-  #     description: "The Apple Watch is a versatile smartwatch that seamlessly integrates with the Apple ecosystem, offering a wide range of health, fitness, and productivity features. It comes in various models, including the Apple Watch Series 9 and Apple Watch Ultra, each boasting advanced technology such as an always-on Retina display, precise GPS tracking, and robust health monitoring tools like heart rate sensors, ECG, and blood oxygen measurement. The watch supports a multitude of apps, notifications, and customizable watch faces, providing a personalized experience. With its water resistance, fitness tracking capabilities, and the ability to make calls and send messages, the Apple Watch serves as a comprehensive companion for both everyday use and athletic pursuits."
-  #   )
-  # end
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.update(
+      name: params[:name] || @product.name,
+      price: params[:price] || @product.price,
+      image_url: params[:image_url] || @product.image_url,
+      description: params[:description] || @product.description,
+    )
+    render :show
+  end
+
+  def destroy
+    product = Product.find_by(id: params[:id])
+    product.destroy
+    render json: { message: "product removed" }
+  end
 end
