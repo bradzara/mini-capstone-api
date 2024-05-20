@@ -17,8 +17,11 @@ class ProductsController < ApplicationController
       image_url: params[:image_url],
       description: params[:description]
     )
-    @product.save
-    render template: "products/show"
+    if @product.save
+      render template: "products/show"
+    else
+      render json: {errors: @product.errors.full_messages}
+    end
   end
 
   def update
@@ -38,4 +41,3 @@ class ProductsController < ApplicationController
     render json: { message: "product removed" }
   end
 end
-
