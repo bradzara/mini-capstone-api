@@ -38,3 +38,4 @@ class ProductsController < ApplicationController
     render json: { message: "product removed" }
   end
 end
+
