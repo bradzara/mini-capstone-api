@@ -23,6 +23,8 @@ class Product < ApplicationRecord
   def total
     price + tax
   end
+
+  belongs_to :supplier
 end
 
 

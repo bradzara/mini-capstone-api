@@ -1,6 +1,6 @@
 class SuppliersController < ApplicationController
   def index
-    @suppliers = Product.all
+    @suppliers = Supplier.all
     render template: "suppliers/index"
   end
 
