@@ -15,7 +15,8 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      inventory: params[:inventory]
+      inventory: params[:inventory],
+      supplier_id: params[:supplier_id],
     )
     if @product.save
       render template: "products/show"

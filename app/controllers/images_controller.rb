@@ -12,11 +12,10 @@ class ImagesController < ApplicationController
   def create
     #make new Image in the db
     @image = Image.new(
-      name: params[:name],
-      email: params[:email],
-      phone_number: params[:phone_number],
+      url: params[:url],
+      product_id: params[:product_id],
     )
-    if @image.save
+    if @image.save!
       render template: "images/show"
     else
       render json: {errors: @image.errors.full_messages}
@@ -26,9 +25,7 @@ class ImagesController < ApplicationController
   def update
     @image = Image.find_by(id: params[:id])
     @image.update(
-      name: params[:name] || @image.name,
-      email: params[:email] || @image.email,
-      phone_number: params[:phone_number] || @image.phone_number,
+      url: params[:url] || @image.url,
     )
     render :show
   end
