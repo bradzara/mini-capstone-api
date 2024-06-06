@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   patch "/images/:id" => "images#update"
   delete "/images/:id" => "images#destroy"
 
-
+  post "users" => "users#create"
+  
 end
