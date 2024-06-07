@@ -30,8 +30,14 @@ Rails.application.routes.draw do
   delete "/images/:id" => "images#destroy"
 
   # User controller routes (sign up)
-  post "users" => "users#create"
+  post "/users" => "users#create"
+  get "/users" => "users#index"
 
   #Sessions controller routes (login)
   post "/sessions" => "sessions#create"
+
+  #Orders controller routes
+  post "/orders" => "orders#create"
+  get "/orders" => "orders#index"
+  get "/orders/:id" => "orders#show"
 end
