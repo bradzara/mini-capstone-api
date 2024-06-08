@@ -13,7 +13,6 @@ class Product < ApplicationRecord
       false
     end
   end
-  
 
   # return the tax that would be charged for a particular product. (Assume a 9% tax rate.)
   def tax
@@ -23,6 +22,20 @@ class Product < ApplicationRecord
   # return the sum of the price + tax.
   def total
     price + tax
+  end
+
+  # Define the calculation method
+  def calculate_order_details(quantity)
+    tax_rate = 0.09
+    subtotal = quantity * price
+    tax = subtotal * tax_rate
+    total = subtotal + tax
+
+    {
+      subtotal: subtotal,
+      tax: tax,
+      total: total
+    }
   end
 
   belongs_to :supplier

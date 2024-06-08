@@ -1,14 +1,17 @@
 class OrdersController < ApplicationController
   def create
     product = Product.find_by(id: params[:product_id])
+    quantity = params[:quantity].to_i
     
+    order_details = product.calculate_order_details(quantity)
+
     @order = Order.new(
       user_id: current_user.id,
       product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: product.price * params[:quantity].to_i,
-      tax: product.tax * params[:quantity].to_i,
-      total: (product.price * params[:quantity].to_i) + (product.tax * params[:quantity].to_i)
+      quantity: quantity,
+      subtotal: order_details[:subtotal],
+      tax: order_details[:tax],
+      total: order_details[:total]
     )
     if @order.save
       render template: "orders/show"
