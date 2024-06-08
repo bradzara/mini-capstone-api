@@ -13,6 +13,7 @@ class Product < ApplicationRecord
       false
     end
   end
+  
 
   # return the tax that would be charged for a particular product. (Assume a 9% tax rate.)
   def tax
