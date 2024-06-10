@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user
+  
   def create
     product = Product.find_by(id: params[:product_id])
     quantity = params[:quantity].to_i
-    
     order_details = product.calculate_order_details(quantity)
 
     @order = Order.new(
@@ -21,8 +22,8 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(user_id: current_user.id)
-    # @orders = current.user.orders
+    # @orders = Order.where(user_id: current_user.id)
+    @orders = current_user.orders
     render :index
   end
 
