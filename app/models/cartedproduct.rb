@@ -1,0 +1,2 @@
+class Cartedproduct < ApplicationRecord
+end
