@@ -41,4 +41,9 @@ Rails.application.routes.draw do
   get "/orders" => "orders#index"
   get "/orders/:id" => "orders#show"
   delete "/orders/:id" => "orders#destroy"
+
+  #Carted products controller routes
+  post "/carted_products" => "carted_products#create"
+  get "/carted_products/:id" => "carted_products#show"
+  get "/carted_products" => "carted_products#index"
 end

@@ -1,2 +1,0 @@
-class Cartedproduct < ApplicationRecord
-end
