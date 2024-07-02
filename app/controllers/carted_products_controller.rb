@@ -9,17 +9,18 @@ class CartedProductsController < ApplicationController
     if @carted_product.save
       render :show
     else
-      render json: {error: carted_product.errors.full_messages}
+      render json: {error: @carted_product.errors.full_messages}
     end
-  end
-
-  def show
-    @carted_product = CartedProduct.find_by(id: params[:id])
-    render :show
   end
 
   def index
     @carted_products = CartedProduct.where(user_id: current_user.id, status: 'carted')
     render :index
+  end
+
+  def destroy
+    carted_product = CartedProduct.find_by(id: params[:id])
+    carted_product.update(status: "removed")
+    render json: {message: "item removed"}
   end
 end
